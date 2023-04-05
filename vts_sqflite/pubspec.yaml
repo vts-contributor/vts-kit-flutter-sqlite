@@ -1,0 +1,34 @@
+name: vts_sqflite
+repository: https://github.com/vts-contributor/vts-kit-flutter-sqlite/tree/develop/vts_sqflite
+issue_tracker: https://github.com/vts-contributor/vts-kit-flutter-sqlite/issues
+description: Flutter plugin for SQLite, a self-contained, high-reliability,
+  embedded, SQL database engine. (Forked from Sqflite to implement SQLCipher)
+version: 0.0.1
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+  flutter: ">=3.3.0"
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.viettel.vts_sqflite
+        pluginClass: VtsSqflitePlugin
+      ios:
+        pluginClass: VtsSqflitePlugin
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite_common: '>=2.4.0+2 <4.0.0'
+  path: '>=1.8.0 <3.0.0'
+
+dev_dependencies:
+  flutter_lints: '>=1.0.0'
+  process_run: '>=0.12.0'
+  http: '>=0.13.0'
+  flutter_test:
+    sdk: flutter
+  test_api: '>=0.2.19'
+  pub_semver: '>=2.0.0'
