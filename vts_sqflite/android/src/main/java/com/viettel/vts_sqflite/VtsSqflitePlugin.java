@@ -4,7 +4,7 @@ import static com.viettel.vts_sqflite.Constant.CMD_GET;
 import static com.viettel.vts_sqflite.Constant.ERROR_BAD_PARAM;
 import static com.viettel.vts_sqflite.Constant.MEMORY_DATABASE_PATH;
 import static com.viettel.vts_sqflite.Constant.METHOD_BATCH;
-import static com.viettel.vts_sqflite.Constant.METHOD_CHANGE_PASSWORD;
+import static com.viettel.vts_sqflite.Constant.METHOD_CHANGE_PD;
 import static com.viettel.vts_sqflite.Constant.METHOD_CLOSE_DATABASE;
 import static com.viettel.vts_sqflite.Constant.METHOD_DEBUG;
 import static com.viettel.vts_sqflite.Constant.METHOD_DEBUG_MODE;
@@ -23,7 +23,7 @@ import static com.viettel.vts_sqflite.Constant.METHOD_UPDATE;
 import static com.viettel.vts_sqflite.Constant.PARAM_CMD;
 import static com.viettel.vts_sqflite.Constant.PARAM_ID;
 import static com.viettel.vts_sqflite.Constant.PARAM_LOG_LEVEL;
-import static com.viettel.vts_sqflite.Constant.PARAM_PASSWORD;
+import static com.viettel.vts_sqflite.Constant.PARAM_PD;
 import static com.viettel.vts_sqflite.Constant.PARAM_PATH;
 import static com.viettel.vts_sqflite.Constant.PARAM_READ_ONLY;
 import static com.viettel.vts_sqflite.Constant.PARAM_RECOVERED;
@@ -346,7 +346,7 @@ public class VtsSqflitePlugin implements FlutterPlugin, MethodCallHandler {
         final boolean inMemory = isInMemoryPath(path);
 
         final boolean singleInstance = !Boolean.FALSE.equals(call.argument(PARAM_SINGLE_INSTANCE)) && !inMemory;
-        final String password = call.argument(PARAM_PASSWORD);
+        final String password = call.argument(PARAM_PD);
 
         // For single instance we create or reuse a thread right away
         // DO NOT TRY TO LOAD existing instance, the database has been closed
@@ -636,7 +636,7 @@ public class VtsSqflitePlugin implements FlutterPlugin, MethodCallHandler {
                 onDecryptDatabaseCall(call, result);
                 break;
             }
-            case METHOD_CHANGE_PASSWORD: {
+            case METHOD_CHANGE_PD: {
                 onChangePasswordCall(call, result);
                 break;
             }
@@ -694,7 +694,7 @@ public class VtsSqflitePlugin implements FlutterPlugin, MethodCallHandler {
 
     private void onEncryptOrDecryptDatabaseCall(final MethodCall call, final Result result, boolean encrypt) {
         String path = call.argument(PARAM_PATH);
-        String password = call.argument(PARAM_PASSWORD);
+        String password = call.argument(PARAM_PD);
 
         if (path == null || password == null) {
             result.error(Constant.ERROR_BAD_PARAM, "database file path or password for encryption/decryption is null", null);
@@ -770,7 +770,7 @@ public class VtsSqflitePlugin implements FlutterPlugin, MethodCallHandler {
         }
         databaseWorkerPool.post(database, () -> {
             try {
-                database.changePassword(call.argument(PARAM_PASSWORD));
+                database.changePassword(call.argument(PARAM_PD));
                 result.success(true);
             } catch (Exception e) {
                 e.printStackTrace();

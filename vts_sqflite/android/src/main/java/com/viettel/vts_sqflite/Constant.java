@@ -24,7 +24,7 @@ public class Constant {
     static final public String METHOD_DELETE_DATABASE = "deleteDatabase";
     static final public String METHOD_ENCRYPT_DATABASE = "encryptDatabase";
     static final public String METHOD_DECRYPT_DATABASE = "decryptDatabase";
-    static final public String METHOD_CHANGE_PASSWORD = "changePassword";
+    static final public String METHOD_CHANGE_PD = "changePassword";
     // true when entering, false when leaving, null otherwise, should be named inTransactionChange instead
     public static final String PARAM_IN_TRANSACTION_CHANGE = "inTransaction";
     // Set for calls within a transaction
@@ -65,7 +65,7 @@ public class Constant {
     // when opening a database
     static final String PARAM_READ_ONLY = "readOnly"; // boolean
     static final String PARAM_SINGLE_INSTANCE = "singleInstance"; // boolean
-    static final String PARAM_PASSWORD = "password"; // boolean
+    static final String PARAM_PD = "password"; // boolean
     static final String PARAM_LOG_LEVEL = "logLevel"; // int
     static final String PARAM_THREAD_PRIORITY = "androidThreadPriority"; // int
     static final String PARAM_THREAD_COUNT = "androidThreadCount"; // int
